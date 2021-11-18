@@ -8,9 +8,6 @@ pipeline {
 		}
 
 		stage('OWASP DependencyCheck') {
-					tools {
-                   		jdk "jdk-11"
-                	}
 			steps {
 				dependencyCheck additionalArguments: '--format HTML --format XML --suppression suppression.xml --disableYarnAudit --disableNodeAudit', odcInstallation: 'Default'
 			}
