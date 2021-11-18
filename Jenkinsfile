@@ -6,11 +6,17 @@ pipeline {
         }
     }
     stages {
+        stage('Checkout') { // Checkout (git clone ...) the projects repository
+            steps {
+                checkout scm
+            }
+        }
         stage('Build') { 
             steps {
                 sh 'npm install' 
             }
         }
+
         stage('OWASP DependencyCheck') {
             steps {
                 dependencyCheck additionalArguments: '--format HTML --format XML', odcInstallation: 'Default'
